@@ -1,0 +1,23 @@
+// the main function is in built 
+// theis code is written in codestudion of codeninja
+// the link for the problem : https://www.codingninjas.com/codestudio/problems/pascal-s-triangle_1089580?topList=striver-sde-sheet-problems
+
+#include <bits/stdc++.h> 
+vector<vector<long long int>> printPascal(int n) 
+{
+    vector<vector<long long int>> res(n);
+    //setting the 1st and last number of each row as 1
+    for(int i=0; i<n; i++){
+        res[i].resize(i+1);
+        res[i][0] = 1;
+        res[i][res[i].size()-1] = 1;
+    }
+    if(n == 0)
+        return res;
+    for(int i=2; i<n; i++){
+        for(int j=1; j<res[i].size()-1; j++)
+            res[i][j] = res[i-1][j-1]+res[i-1][j];
+    }
+    return res;
+    
+}
