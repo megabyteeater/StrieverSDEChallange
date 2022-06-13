@@ -1,0 +1,55 @@
+// the main function is in built 
+// theis code is written in codestudion of codeninja
+// the link for the problem : https://www.codingninjas.com/codestudio/problems/rotate-matrix_981260?topList=striver-sde-sheet-problems&leftPanelTab=0
+
+
+#include <bits/stdc++.h> 
+
+void rotateMatrix(vector<vector<int>> &mat, int m, int n)
+{
+    
+    int row = 0, col = 0;
+    int prev, curr;
+    while (row < m && col < n){
+        if (row + 1 == m || col + 1 == n)
+            break;
+        prev = mat[row + 1][col];
+ 
+        //Move 1st row  
+        for (int i = col; i < n; i++){
+            curr = mat[row][i];
+            mat[row][i] = prev;
+            prev = curr;
+        }
+        row++;
+        
+        //Move last col
+        for (int i = row; i < m; i++){
+            curr = mat[i][n-1];
+            mat[i][n-1] = prev;
+            prev = curr;
+        }
+        n--;
+ 
+        //Move last row
+        if (row < m){
+            for (int i = n-1; i >= col; i--){
+                curr = mat[m-1][i];
+                mat[m-1][i] = prev;
+                prev = curr;
+            }
+        }
+        m--;
+ 
+        //Move 1st column
+        if (col < n){
+            for (int i = m-1; i >= row; i--){
+                curr = mat[i][col];
+                mat[i][col] = prev;
+                prev = curr;
+            }
+        }
+        col++;
+    }
+
+}
